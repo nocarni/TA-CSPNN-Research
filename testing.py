@@ -4,13 +4,14 @@ import time
 from collections import OrderedDict
 import sys
 
-import numpy
-import braindecode
+import numpy as np
+
 from braindecode.datasets.bcic_iv_2a import BCICompetition4Set2A
 
 
-data_folder = '/dsmlp/datasets/home/home-01/39/139/ncarnigl/TA-CSPNN-Research/bci_2a'
-subject_id = 1
+
+data_folder = './bci_2a'
+subject_id = 2
 low_cut_hz = 4
 
 ival = [-500, 4000]
@@ -29,16 +30,10 @@ test_filepath = os.path.join(data_folder, test_filename)
 train_label_filepath = train_filepath.replace(".gdf", ".mat")
 test_label_filepath = test_filepath.replace(".gdf", ".mat")
 
+
+print(train_filepath)
+print(train_label_filepath)
 train_loader = BCICompetition4Set2A(
     train_filepath, labels_filename=train_label_filepath
 )
-test_loader = BCICompetition4Set2A(
-    test_filepath, labels_filename=test_label_filepath
-)
 train_cnt = train_loader.load()
-test_cnt = test_loader.load()
-
-print(train_filename)
-print(test_filename)
-print(train_label_filepath)
-print(test_label_filepath)
